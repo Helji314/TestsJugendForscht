@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="JugendForschtCSS.css">
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>(function () {
-   emailjs.init(Z2_t3j2Lrb-NjlRKn);
+   emailjs.init('Z2_t3j2Lrb-NjlRKn');
 })();
 
 </script>
@@ -172,22 +172,22 @@ alert('Thank you for submitting.');
             const formData = new FormData(form);
 
             let feedback = "";
-            const q9Answers = formData.getAll("q9");
-            if (q9Answers.includes("zone 1")){
-               feedback+= "super\n";
-            } else if (q9Answers.includes("zone 2")){
-               feedback +="okay\n";
-            } else {
-               feedback += "hm\n";
-            }
+            //const q9Answers = formData.getAll("q9");
+            //if (q9Answers.includes("zone 1")){
+              // feedback+= "super\n";
+            //} else if (q9Answers.includes("zone 2")){
+              // feedback +="okay\n";
+            //} else {
+              // feedback += "hm\n";
+            //}
            
             const q8Answers = formData.get("q8");
             switch (q8Answers){
-               case "a bit":    feedback+= "gut\n";
+               case "a bit":    feedback+= "indicator of an ideeal balance of moisture and protein\n A sign of healthy hair!\n";
             break;
-            case "a lot":    feedback+= "pkay\n";
+            case "a lot":    feedback+= "may indicate over-moiturization or a lack of protein\n often a sign of damaged or unbalanced hair\n";
             break;
-            case "not at all":    feedback+= "hm\n";
+            case "not at all":    feedback+= "caused by an excess of protein in the hair\n often a sign of damaged or unbalanced hair";
             break;
                   default:
                feedback+="no Answer given.\n";
