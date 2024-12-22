@@ -99,7 +99,7 @@ Please take a couple of minutes to answer these questions. Thank you for your su
       <label><input type="radio" name="q9" value="zone 3"> zone 3</label><br>
       </div><br>
 <button type="button" onclick="submitQuiz()">Submit</button>
-<button type="button" onclick="submitFeedback()">Show Feedback</button>
+<button type="button" id="submitFeedback">Show Feedback</button>
 </div>
 <script>
        // JavaScript-Funktion zum Verarbeiten und Speichern der Antworten
@@ -178,11 +178,12 @@ if (!formData.get('q9')) {
            // });
            // Bestätigung für den/die Nutzer:in
            alert('Thank you for submiting.');
-
+           }
            function submitFeedback(){
-            const form = document.getElementById("userInput");
+            const form = document.getElementById("quizForm");
             const formData = new FormData(form);
             let feedback = "";
+
             const q9Answers = formData.getAll("q9");
             if (q9Answers.includes("zone 1")){
                feedback+= "suüer\n";
@@ -191,19 +192,21 @@ if (!formData.get('q9')) {
             } else {
                feedback += "hm\n";
             }
-           }
+           
             const q8Answers = formData.get("q8");
-            switch (q8answer){
+            switch (q8Answers){
                case "a bit":    feedback+= "gut\n";
             break;
             case "a lot":    feedback+= "pkay\n";
             break;
             case "not at all":    feedback+= "hm\n";
             break;
+                  default:
+               feedback+="no Answer given.\n";
          }
          alert(feedback);
        }
-       document.getElementById("submitFeedback").addEventListener("click", giveFeedback);
+       document.getElementById("submitFeedback").addEventListener("click", submitFeedback);
 </script>
 </body>
 </html>
