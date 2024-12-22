@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Interaktive quiz, tests on hair types</title>
+<link rel="stylesheet" href="JugendForschtCSS.css">
+<style>
+  body {
+   font-family: Arial, sans-serif;
+   color: bisque;
+   margin: 20px;
+   background-color:darkslategray;
+   line-height: 1.6;
+}
+.question {
+   margin-bottom: 20px;
+}
+button {
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   cursor: pointer;
+}
+button:hover {
+   background-color: #45a049;
+}
+       .question h3 {
+           margin: 0;
+       }
+</style>
+</head>
+<body>
+<h1>Jugend Forscht project: tests on hair types</h1><br>
+<br>
+Please take a couple of minutes to answer these questions. Thank you for your support!<br>
+<form id="quizForm">
+<div class="question">
+<h3>1. What's the colour of your hair?</h3>
+<label><input type="checkbox" name="q1" value="brown"> brown</label><br>
+<label><input type="checkbox" name="q1" value="silver/white"> silver/white</label><br>
+<label><input type="checkbox" name="q1" value="blond"> blond</label><br>
+<label><input type="checkbox" name="q1" value="black"> black</label>
+</div>
+<div class="question">
+   <h3>2. Has your hair gotten some treatement?(coloration etc.)</h3>
+   <label><input type="radio" name="q2" value="yes"> yes</label><br>
+   <label><input type="radio" name="q2" value="no"> no</label><br>
+   </div>
+<div class="question">
+     <h3>2.2 What kind of hair products do you use?</h3>
+    <label><input type="checkbox" name="q2.2" value="fore male"> fore male</label><br>
+   <label><input type="checkbox" name="q2.2" value="fore female"> fore female</label><br>
+   <label><input type="checkbox" name="q2.2" value="prefere not to say"> prefare not to say</label><br>
+    </div>
+<div class="question">
+<h3>3. What's your diet of the last 6 months?</h3>
+<label><input type="radio" name="q3" value="vegetarian"> vegetarian</label><br>
+<label><input type="radio" name="q3" value="vegan"> vegan</label><br>
+<label><input type="radio" name="q3" value="pesquetarien"> pesquetarien</label><br>
+<label><input type="radio" name="q3" value="omnivor"> omnivor</label>
+</div>
+<div class="question">
+   <h3>4. How often do you drink alcohol?</h3>
+   <label><input type="radio" name="q4" value="never"> never</label><br>
+   <label><input type="radio" name="q4" value="less than once a week"> less than once a week</label><br>
+   <label><input type="radio" name="q4" value="more than once a week"> more than once a week</label><br>
+   </div>
+<div class="question">
+   <h3>5. How old are you?</h3>
+   <label><input type="radio" name="q5" value=">16"> below 16</label><br>
+   <label><input type="radio" name="q5" value="16-24"> 16-24</label><br>
+   <label><input type="radio" name="q5" value="25-34"> 25-34</label><br>
+   <label><input type="radio" name="q5" value="35-44"> 35-44</label><br>
+   <label><input type="radio" name="q5" value="45-44"> 45-65</label><br>
+   <label><input type="radio" name="q5" value=">65"> more than 65</label>
+   </div>
+<div id="writeIn">
+  <h3>6. Where are you from?</h3>
+  <label for="userInput"aria-label="Enter your city of origin">Please Write In:</label><br>
+  <input type="text" id="userInput" name="userInput" required><br>
+  </div>
+  <div id="writeIn">
+   <h3>7. Where are you curantly living?</h3>
+   <label for="userInput"aria-label="Enter your city of living">Please Write In:</label><br>
+   <input type="text" id="userInput" name="userInput" required><br><br><br>
+   </div>
+   <div class="Image1"></div><br><br>
+   <div class="question">
+      <div class="question">
+         <h3>8. What do you observe when doing this test?</h3>
+         <label><input type="radio" name="q8" value="a bit"> it stretches a bit</label><br>
+         <label><input type="radio" name="q8" value="a lot"> it streches a lot</label><br>
+         <label><input type="radio" name="q8" value="not at all"> it doesn't stretch at all</label><br>
+         </div><br>
+      <h3>9. In which zone is your hair staying?</h3>
+      <label><input type="radio" name="q9" value="zone 1"> zone1</label><br>
+      <label><input type="radio" name="q9" value="zone 2"> zone 2</label><br>
+      <label><input type="radio" name="q9" value="zone 3"> zone 3</label><br>
+      </div><br>
+<button type="button" onclick="submitQuiz()">Submit</button>
+<button type="button" onclick="submitFeedback()">Show Feedback</button>
+</div>
+<script>
+       // JavaScript-Funktion zum Verarbeiten und Speichern der Antworten
+       function submitQuiz() {
+          const userInput= document.getElementById('userInput').value;
+          if (userInput.trim() ===''){
+            alert('please enter a valid answer.');
+            return;
+          }
+           const form = document.getElementById('quizForm');
+           const formData = new FormData(form);
+           const answers = {};
+           // Antworten sammeln
+           for (let [name, value] of formData.entries()) {
+               if (answers[name]) {
+                   // Falls bereits eine Antwort existiert (bei Checkboxen)
+                   answers[name].push(value);
+               } else {
+                   // Neue Antwort hinzufügen
+                   answers[name] = [value];
+               }
+           }
+           if (!formData.get('q1')) {
+   alert('Please select an answer for Question 1.');
+   return;
+}
+if (!formData.get('q2')) {
+   alert('Please select an answer for Question 2.');
+   return;
+}
+if (!formData.get('q2.2')) {
+   alert('Please select an answer for Question 2.2');
+   return;
+}
+if (!formData.get('q3')) {
+   alert('Please select an answer for Question 3.');
+   return;
+}
+if (!formData.get('q4')) {
+   alert('Please select an answer for Question 4.');
+   return;
+}
+if (!formData.get('q4')) {
+   alert('Please select an answer for Question 4.');
+   return;
+}
+if (!formData.get('q5')) {
+   alert('Please select an answer for Question 5.');
+   return;
+}
+if (!formData.get('q8')) {
+   alert('Please select an answer for Question 8.');
+   return;
+}
+if (!formData.get('q9')) {
+   alert('Please select an answer for Question 9.');
+   return;
+}
+           // Antworten in JSON-Format umwandeln
+           const jsonAnswers = JSON.stringify(answers);
+           // Antworten im Local Storage speichern
+           localStorage.setItem('quizAnswers', jsonAnswers);
+           // Optional: Antworten an einen Server senden
+           // fetch('https://example.com/submit', {
+           //     method: 'POST',
+           //     headers: {
+           //         'Content-Type': 'application/json'
+           //     },
+           //     body: jsonAnswers
+           // }).then(response => {
+           //     if (response.ok) {
+           //         alert('Antworten erfolgreich gesendet!');
+           //     } else {
+           //         alert('Fehler beim Senden der Antworten.');
+           //     }
+           // });
+           // Bestätigung für den/die Nutzer:in
+           alert('Thank you for submiting.');
+
+           function submitFeedback(){
+            const form = document.getElementById("userInput");
+            const formData = new FormData(form);
+            let feedback = "";
+            const q9Answers = formData.getAll("q9");
+            if (q9Answers.includes("zone 1")){
+               feedback+= "suüer\n";
+            } else if (q9Answers.includes("zone 2")){
+               feedback +="okay\n";
+            } else {
+               feedback += "hm\n";
+            }
+           }
+            const q8Answers = formData.get("q8");
+            switch (q8answer){
+               case "a bit":    feedback+= "gut\n";
+            break;
+            case "a lot":    feedback+= "pkay\n";
+            break;
+            case "not at all":    feedback+= "hm\n";
+            break;
+         }
+         alert(feedback);
+       }
+       document.getElementById("submitFeedback").addEventListener("click", giveFeedback);
+</script>
+</body>
+</html>
