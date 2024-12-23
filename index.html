@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Interaktive quiz, tests on hair types</title>
+<title>Interaktive quiz, study on hair</title>
 <link rel="stylesheet" href="css/JugendForschtCSS.css">
 <base href="/TestJugendForscht/">
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
@@ -38,9 +38,21 @@ button:hover {
 </style>
 </head>
 <body>
-<h1>Jugend Forscht project: tests on hair types</h1><br>
-<br>
-Please take a couple of minutes to answer these questions. Thank you for your support!<br>
+<h1>Jugend Forscht project: study on hair</h1><br>
+Please take a couple of minutes to answer these questions.The answers are anonymous so please answer sincerly. Thank you for your support!<br>
+   <h3>Hair elasticity test</h3>
+   Instructions: <br>
+1. take one hair stand (dry) <br>
+2. ⁠pur each end in one Hand <br>
+3. ⁠pull them opposite directions <br>
+4. ⁠observe how much the hair Streiches <br>
+   <div class="question">
+      <div class="question">
+         <h3>8. What do you observe when performing this test?<br>Answer the following question accordimg to your Observation.</h3>
+         <label><input type="radio" name="q8" value="a bit"> Streches about 20-30% of it’s original length</label><br>
+         <label><input type="radio" name="q8" value="a lot"> it streiches beyound 50%</label><br>
+         <label><input type="radio" name="q8" value="not at all"> Breaks directly when streched</label><br>
+         </div><br>
 <form id="quizForm">
 <div class="question">
 <h3>1. What's the colour of your hair?</h3>
@@ -56,22 +68,23 @@ Please take a couple of minutes to answer these questions. Thank you for your su
    </div>
 <div class="question">
      <h3>2.2 What kind of hair products do you use?</h3>
-    <label><input type="checkbox" name="q2.2" value="fore men"> fore men</label><br>
-   <label><input type="checkbox" name="q2.2" value="fore women"> fore women</label><br>
+    <label><input type="checkbox" name="q2.2" value="fore men"> for men</label><br>
+   <label><input type="checkbox" name="q2.2" value="fore women"> for women</label><br>
    <label><input type="checkbox" name="q2.2" value="prefere not to say"> prefare not to say</label><br>
     </div>
 <div class="question">
 <h3>3. What has your diet been like over the last 6 months?</h3>
 <label><input type="radio" name="q3" value="vegetarian"> vegetarian</label><br>
 <label><input type="radio" name="q3" value="vegan"> vegan</label><br>
-<label><input type="radio" name="q3" value="pesquetarien"> pesquetarien</label><br>
-<label><input type="radio" name="q3" value="omnivor"> omnivor</label>
+<label><input type="radio" name="q3" value="pasqueterian"> pasqueterian</label><br>
+<label><input type="radio" name="q3" value="omnivore"> omnivore</label>
 </div>
 <div class="question">
    <h3>4. How often do you drink alcohol?</h3>
    <label><input type="radio" name="q4" value="never"> never</label><br>
-   <label><input type="radio" name="q4" value="less than once a week"> less than once a week</label><br>
-   <label><input type="radio" name="q4" value="more than once a week"> more than once a week</label><br>
+   <label><input type="radio" name="q4" value="once a week"> ~once a week</label><br>
+   <label><input type="radio" name="q4" value="once a month"> ~once a month</label><br>
+   <label><input type="radio" name="q4" value="more than once a month"> more than once a month</label><br>
    </div>
 <div class="question">
    <h3>5. What's your age?</h3>
@@ -80,7 +93,7 @@ Please take a couple of minutes to answer these questions. Thank you for your su
    <label><input type="radio" name="q5" value="25-34"> 25-34</label><br>
    <label><input type="radio" name="q5" value="35-44"> 35-44</label><br>
    <label><input type="radio" name="q5" value="45-64"> 45-65</label><br>
-   <label><input type="radio" name="q5" value=">65"> more than 65</label>
+   <label><input type="radio" name="q5" value=">65"> over 65</label>
    </div>
 <div id="writeIn">
   <h3>6. Where are you from?</h3>
@@ -88,19 +101,10 @@ Please take a couple of minutes to answer these questions. Thank you for your su
   <input type="text" id="userInput1" name="userInput" required><br>
   </div>
   <div id="writeIn">
-   <h3>7. Where are you currantly living?</h3>
+   <h3>7. Where are you currently living?</h3>
    <label for="userInput"aria-label="Enter your city of living">Please Write In:</label><br>
    <input type="text" id="userInput2" name="userInput" required><br><br><br>
    </div>
-   <div class="Image1"></div><br><br>
-   <img src="Image1.jpg" alt="instructions: take one hair stand, each end in one hand and pull them in different directions. Observe if it's stretching a bit, a lot or not at all before breaking.">
-   <div class="question">
-      <div class="question">
-         <h3>8. What do you observe when performing this test?</h3>
-         <label><input type="radio" name="q8" value="a bit"> it stretches a bit</label><br>
-         <label><input type="radio" name="q8" value="a lot"> it streches a lot</label><br>
-         <label><input type="radio" name="q8" value="not at all"> it doesn't stretch at all</label><br>
-         </div><br>
       
 <button type="button" onclick="submitQuiz()">Submit answers</button>
 <button type="button" id="submitFeedback">Show Feedback</button>
