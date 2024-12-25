@@ -158,14 +158,12 @@ const formData = new FormData(form);
 // Optional: Antworten an einen Server senden (z.B. über EmailJS)
 emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
     .then(function () {
-        alert("Vielen Dank für deine Teilnahme!");
+        alert("Thank you for submitting!");
     }, function (error) {
         alert("Sorry, we have some trubble doing the test.");
     });
 
 // Bestätigung für den/die Nutzer:in
-
-alert('Thank you for submitting.');
    });
            document.getElementById("submitFeedback").addEventListener("click",function(){
             const form = document.getElementById("quizForm");
