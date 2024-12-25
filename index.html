@@ -131,6 +131,8 @@ Please take a couple of minutes to answer these questions.The answers are anonym
 document.getElementById("quizForm").addEventListener("click", function () {
 const form = document.getElementById('quizForm');
 const formData = new FormData(form);
+
+   
   //         if (!formData.get('q1')) {
    //alert('Please select an answer for Question 1.');
    //return;
@@ -147,6 +149,47 @@ const formData = new FormData(form);
   // alert('Please select an answer for Question 3.');
    //return;
 //}
+   
+    let feedback = "";
+    const q8Answer = formData.get("q8");
+    switch (q8Answer) {
+        case "a bit":
+            feedback += "Indicator of an ideal balance of moisture and protein.\nA sign of healthy hair!";
+            break;
+        case "a lot":
+            feedback += "May indicate over-moisturization or a lack of protein.\nOften a sign of damaged or unbalanced hair.";
+            break;
+        case "not at all":
+            feedback += "Caused by an excess of protein in the hair.\nOften a sign of damaged or unbalanced hair.";
+            break;
+        default:
+            feedback += "No answer given for hair elasticity.";
+    }
+    alert(feedback);
+});
+
+function submitQuiz() {
+    const form = document.getElementById("quizForm");
+    const formData = new FormData(form);
+    
+    // Form validation
+    if (!formData.get("q8")) {
+        alert("Please select an answer for Question 8 (Hair Elasticity Test).");
+        return;
+    }
+    if (!formData.get("q1") || !formData.get("q2") || !formData.get("q3") || !formData.get("q4") || !formData.get("q5")) {
+        alert("Please answer all the questions.");
+        return;
+    }
+
+    // Send the form data to EmailJS when the "Submit answers" button is clicked
+    emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
+        .then(function() {
+            alert("Thank you for submitting your answers!");
+        }, function(error) {
+            alert("Sorry, there was a problem submitting your answers. Please try again.");
+        });
+}
 //if (!formData.get('q4')) {
   // alert('Please select an answer for Question 4.');
    //return;
@@ -156,42 +199,7 @@ const formData = new FormData(form);
   // return;
 //}
 // Optional: Antworten an einen Server senden (z.B. über EmailJS)
-emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
-    .then(function () {
-        alert("Thank you for submitting!");
-    }, function (error) {
-        alert("Sorry, we have some trubble doing the test.");
-    });
 
-// Bestätigung für den/die Nutzer:in
-   });
-           document.getElementById("submitFeedback").addEventListener("click",function(){
-            const form = document.getElementById("quizForm");
-            const formData = new FormData(form);
-
-            let feedback = "";
-            //const q9Answers = formData.getAll("q9");
-            //if (q9Answers.includes("zone 1")){
-              // feedback+= "super\n";
-            //} else if (q9Answers.includes("zone 2")){
-              // feedback +="okay\n";
-            //} else {
-              // feedback += "hm\n";
-            //}
-           
-            const q8Answers = formData.get("q8");
-            switch (q8Answers){
-               case "a bit":    feedback+= "indicator of an ideeal balance of moisture and protein\n A sign of healthy hair!\n";
-            break;
-            case "a lot":    feedback+= "may indicate over-moiturization or a lack of protein\n often a sign of damaged or unbalanced hair\n";
-            break;
-            case "not at all":    feedback+= "caused by an excess of protein in the hair\n often a sign of damaged or unbalanced hair";
-            break;
-                //  default:
-               //feedback+="no Answer given.\n";
-         }
-         alert(feedback);
-       });
 </script>
 </body>
 </html>
