@@ -155,14 +155,6 @@ if (!formData.get('q5')) {
    alert('Please select an answer for Question 5.');
    return;
 }
-if (!formData.get('q8')) {
-   alert('Please select an answer for Question 8.');
-   return;
-}
-if (!formData.get('q9')) {
-   alert('Please select an answer for Question 9.');
-   return;
-}
 // Optional: Antworten an einen Server senden (z.B. über EmailJS)
 emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
     .then(function () {
