@@ -131,30 +131,30 @@ Please take a couple of minutes to answer these questions.The answers are anonym
 document.getElementById("quizForm").addEventListener("click", function () {
 const form = document.getElementById('quizForm');
 const formData = new FormData(form);
-           if (!formData.get('q1')) {
-   alert('Please select an answer for Question 1.');
-   return;
-}
-if (!formData.get('q2')) {
-   alert('Please select an answer for Question 2.');
-   return;
-}
-if (!formData.get('q2.2')) {
-   alert('Please select an answer for Question 2.2');
-   return;
-}
-if (!formData.get('q3')) {
-   alert('Please select an answer for Question 3.');
-   return;
-}
-if (!formData.get('q4')) {
-   alert('Please select an answer for Question 4.');
-   return;
-}
-if (!formData.get('q5')) {
-   alert('Please select an answer for Question 5.');
-   return;
-}
+  //         if (!formData.get('q1')) {
+   //alert('Please select an answer for Question 1.');
+   //return;
+//}
+//if (!formData.get('q2')) {
+  // alert('Please select an answer for Question 2.');
+   //return;
+//}
+//if (!formData.get('q2.2')) {
+  // alert('Please select an answer for Question 2.2');
+   //return;
+//}
+//if (!formData.get('q3')) {
+  // alert('Please select an answer for Question 3.');
+   //return;
+//}
+//if (!formData.get('q4')) {
+  // alert('Please select an answer for Question 4.');
+   //return;
+//}
+//if (!formData.get('q5')) {
+//   alert('Please select an answer for Question 5.');
+  // return;
+//}
 // Optional: Antworten an einen Server senden (z.B. über EmailJS)
 emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
     .then(function () {
@@ -189,8 +189,8 @@ alert('Thank you for submitting.');
             break;
             case "not at all":    feedback+= "caused by an excess of protein in the hair\n often a sign of damaged or unbalanced hair";
             break;
-                  default:
-               feedback+="no Answer given.\n";
+                //  default:
+               //feedback+="no Answer given.\n";
          }
          alert(feedback);
        });
