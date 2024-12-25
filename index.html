@@ -150,21 +150,37 @@ const formData = new FormData(form);
    //return;
 //}
    
-    let feedback = "";
-    const q8Answer = formData.get("q8");
-    switch (q8Answer) {
-        case "a bit":
-            feedback += "Indicator of an ideal balance of moisture and protein.\nA sign of healthy hair!";
-            break;
-        case "a lot":
-            feedback += "May indicate over-moisturization or a lack of protein.\nOften a sign of damaged or unbalanced hair.";
-            break;
-        case "not at all":
-            feedback += "Caused by an excess of protein in the hair.\nOften a sign of damaged or unbalanced hair.";
-            break;
-    }
-    alert(feedback);
-});
+    document.getElementById("submitFeedback").addEventListener("click", function() {
+        const form = document.getElementById("quizForm");
+        const formData = new FormData(form);
+
+        let feedback = "";
+        const q8Answer = formData.get("q8");
+        
+        // Überprüfen, ob eine Antwort für Frage 8 ausgewählt wurde
+        if (!q8Answer) {
+            alert("Please select an answer for Question 8 (Hair Elasticity Test) to get feedback.");
+            return;  // Beendet die Funktion, wenn keine Antwort gegeben wurde
+        }
+        
+        // Feedback je nach Antwort für Frage 8
+        switch (q8Answer) {
+            case "a bit":
+                feedback += "Indicator of an ideal balance of moisture and protein.\nA sign of healthy hair!";
+                break;
+            case "a lot":
+                feedback += "May indicate over-moisturization or a lack of protein.\nOften a sign of damaged or unbalanced hair.";
+                break;
+            case "not at all":
+                feedback += "Caused by an excess of protein in the hair.\nOften a sign of damaged or unbalanced hair.";
+                break;
+            default:
+                feedback += "No answer given for hair elasticity.";
+        }
+
+        // Zeigt das Feedback dem Benutzer an
+        alert(feedback);
+    });
 
 function submitQuiz() {
     const form = document.getElementById("quizForm");
