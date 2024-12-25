@@ -128,9 +128,6 @@ Please take a couple of minutes to answer these questions.The answers are anonym
            //const formData = new FormData(form);
            //const answers = {};
          //}
-document.getElementById("quizForm").addEventListener("click", function () {
-const form = document.getElementById('quizForm');
-const formData = new FormData(form);
 
    
   //         if (!formData.get('q1')) {
@@ -150,60 +147,75 @@ const formData = new FormData(form);
    //return;
 //}
    
-    document.getElementById("submitFeedback").addEventListener("click", function() {
+    <script>
+    // Initialisiere EmailJS, sobald das DOM geladen ist
+    document.addEventListener("DOMContentLoaded", function () {
+        emailjs.init("Z2_t3j2Lrb-NjlRKn");
+
+        // Eventlistener für Feedback-Button
+        document.getElementById("submitFeedback").addEventListener("click", function () {
+            const form = document.getElementById("quizForm");
+            const formData = new FormData(form);
+
+            let feedback = "";
+            const q8Answer = formData.get("q8");
+
+            // Überprüfung der Antwort für Frage 8
+            if (!q8Answer) {
+                alert("Please select an answer for Question 8 (Hair Elasticity Test) to get feedback.");
+                return; // Beendet die Funktion
+            }
+
+            // Feedback je nach Antwort
+            switch (q8Answer) {
+                case "a bit":
+                    feedback += "Indicator of an ideal balance of moisture and protein.\nA sign of healthy hair!";
+                    break;
+                case "a lot":
+                    feedback += "May indicate over-moisturization or a lack of protein.\nOften a sign of damaged or unbalanced hair.";
+                    break;
+                case "not at all":
+                    feedback += "Caused by an excess of protein in the hair.\nOften a sign of damaged or unbalanced hair.";
+                    break;
+                default:
+                    feedback += "No answer given for hair elasticity.";
+            }
+
+            alert(feedback);
+        });
+
+        // Eventlistener für das Formular
+        document.getElementById("quizForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Verhindert Standard-Formularaktion
+            submitQuiz(); // Ruft die Funktion auf, um das Quiz zu verarbeiten
+        });
+    });
+
+    // Funktion zum Verarbeiten des Quiz
+    function submitQuiz() {
         const form = document.getElementById("quizForm");
         const formData = new FormData(form);
 
-        let feedback = "";
-        const q8Answer = formData.get("q8");
-        
-        // Überprüfen, ob eine Antwort für Frage 8 ausgewählt wurde
-        if (!q8Answer) {
-            alert("Please select an answer for Question 8 (Hair Elasticity Test) to get feedback.");
-            return;  // Beendet die Funktion, wenn keine Antwort gegeben wurde
-        }
-        
-        // Feedback je nach Antwort für Frage 8
-        switch (q8Answer) {
-            case "a bit":
-                feedback += "Indicator of an ideal balance of moisture and protein.\nA sign of healthy hair!";
-                break;
-            case "a lot":
-                feedback += "May indicate over-moisturization or a lack of protein.\nOften a sign of damaged or unbalanced hair.";
-                break;
-            case "not at all":
-                feedback += "Caused by an excess of protein in the hair.\nOften a sign of damaged or unbalanced hair.";
-                break;
-            default:
-                feedback += "No answer given for hair elasticity.";
+        // Validierung der Antworten
+        const requiredFields = ["q1", "q2", "q3", "q4", "q5", "q8"];
+        for (const field of requiredFields) {
+            if (!formData.get(field)) {
+                alert(`Please answer question: ${field}`);
+                return; // Beendet die Funktion bei fehlender Antwort
+            }
         }
 
-        // Zeigt das Feedback dem Benutzer an
-        alert(feedback);
-    });
-
-function submitQuiz() {
-    const form = document.getElementById("quizForm");
-    const formData = new FormData(form);
-    
-    // Form validation
-    if (!formData.get("q8")) {
-        alert("Please select an answer for Question 8 (Hair Elasticity Test).");
-        return;
+        // Senden der Daten über EmailJS
+        emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
+            .then(function () {
+                alert("Thank you for submitting your answers!");
+            })
+            .catch(function (error) {
+                console.error("Error:", error);
+                alert("Sorry, there was a problem submitting your answers. Please try again.");
+            });
     }
-    if (!formData.get("q1") || !formData.get("q2") || !formData.get("q3") || !formData.get("q4") || !formData.get("q5")) {
-        alert("Please answer all the questions.");
-        return;
-    }
-
-    // Send the form data to EmailJS when the "Submit answers" button is clicked
-    emailjs.sendForm("service_4454r9g", "template_dr21wjd", form)
-        .then(function() {
-            alert("Thank you for submitting your answers!");
-        }, function(error) {
-            alert("Sorry, there was a problem submitting your answers. Please try again.");
-        });
-}
+</script>
 //if (!formData.get('q4')) {
   // alert('Please select an answer for Question 4.');
    //return;
