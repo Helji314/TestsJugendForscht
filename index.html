@@ -196,6 +196,12 @@ Please take a couple of minutes to answer these questions.The answers are anonym
         const form = document.getElementById("quizForm");
         const formData = new FormData(form);
 
+       
+    // Debugging: Log formData entries
+    for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+
         // Validierung der Antworten
         const requiredFields = ["q1", "q2", "q3", "q4", "q5", "q8"];
         for (const field of requiredFields) {
